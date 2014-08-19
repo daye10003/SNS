@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block head %}
+	<meta charset="UTF-8">
+	<title>sign_up</title>
+{% endblock %}
+
+{% block body %}
+	<div>
+		<form action="/signup" method="post">
+		<dl>
+			<dt>Email</dt>
+			<dd><input class="form-control" id="InputEmail" placeholder="Enter email" type='email' name='email' required/></dd>
+			<dt>password</dt>
+			<dd><input class="form-control" id="InputPassword" placeholder="Password" type='password' name='password' required/></dd>
+			<dt>password check</dt>
+			<dd><input class='form-control' id='InputPasswordCheck' placeholder='Password check' type='password' name='password_check' required/></dd>
+			<dt>username</dt>
+			<dd><input class='form-control' id='InputUsername' placeholder='Username' type='text' name='username' required/></dd>
+			<dt>mobile</dt>
+			<dd><input class='form-control' id='InputMobile' placeholder='Mobile' type='tel' name='mobile' required/></dd>
+			<dt>gender</dt>
+			<dd><input type='radio' name='gender' value='female' checked/>Female<input type='radio' name='gender' value='male'/>Male</dd>
+			<dt>birthday</dt>
+			<dd><input class='form-control' id='InputBirthday' placeholder='Birthday' type='date' name='birthday' required/></dd>
+			<dd><input class="btn btn-default" type='submit' value='signup'/></dd>
+		</dl>
+	</form>
+	</div>
+{% endblock %}

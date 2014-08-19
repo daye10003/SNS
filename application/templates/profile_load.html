@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>{{user.profile_image}}</div>
+	<img src='{{ url_for("get_profile_image", filename = [user.profile_image,''][user.profile_image == None])}}' alt='profile_image'>
+	<form enctype='multipart/form-data' action='{{ url_for("upload_image") }}' method='post'>
+	<input type='file' name='profile-image'>
+	<button type='submit'>Submit</button>
+</form>
+</body>
+</html>

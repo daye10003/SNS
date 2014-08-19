@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>timeline</title>
+{% endblock %}
+
+{% block body %}
+<div>{{ wall_id }}'s timeline</div>
+<div>
+	<form action='/timeline', method='post'>
+		<dl>
+			<dd><textarea name=text rows=5 cols=40 name='content'></textarea></dd>
+			<input type="checkbox" name="is_secret" value="Secret">Secret<br>
+			<dd><input type='submit' value='post'></dd>
+		</dl>
+	</form>
+</div>
+{% for post in posts %}
+<div>
+	{{ post.content }}<br>
+	{{ post.writer }}<br>
+	{{ post.time }}
+</div>
+{% endfor %}
+
+{% endblock %}

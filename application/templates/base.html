@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LAYOUT EXAMPLE</title>
+	<link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}"/>
+	<script type="text/javascript" src="{{url_for('static',filename='js/jquery-1.11.1.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+</head>
+<body>
+	{% block header %}
+	{% endblock %}
+
+	{% block body %}
+	<div class='container'>
+		<div class="row">
+			<div class='col-md-12 well'>
+				{% block my_block %}
+				<div> This is my_block</div>
+				{% endblock %}
+			</div>
+		</div>		
+	</div>
+	{% endblock %}
+
+	{% block footer %}
+	{% endblock %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>welcome!</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	{% block head %}{% endblock %}
+</head>
+<body>
+	{% for message in get_flashed_messages() %}
+	<div class='flash'>{{ message }}</div>
+	{% endfor %}
+	<div>
+		{% if not session.logged_in %}
+		<ul class="nav nav-tabs" role="tablist">
+			<li type="button" class="navbar-form navbar-left"><a href="#">Home</a></li>
+			<li><a type="button" class="navbar-form navbar-left" href="{{ url_for('login') }}">log in</a></li>
+			<li><a type="button" class="navbar-form navbar-left" href="{{ url_for('signup') }}">sign up</a></li>
+		</ul>
+	</div>
+	{% else %}
+	<div>
+		Hello {{ session.username }}!
+		<a href="{{ url_for('logout') }}">logout</a>
+	</div>
+	{% endif %}
+</div>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>
