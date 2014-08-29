@@ -1,27 +1,25 @@
 {% extends 'index.html' %}
 
 {% block head %}
-<meta charset="UTF-8">
-<title>timeline</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/timeline.css') }}">
 {% endblock %}
 
 {% block body %}
-<div>{{ wall_id }}'s timeline</div>
-<div>
-	<form action='/timeline', method='post'>
+<div class='row'>
+</div>
+<div style = 'text-align : center'>
+	<form action='/timeline/{{wall_owner.id}}', method='post'>
 		<dl>
-			<dd><textarea name=text rows=5 cols=40 name='content'></textarea></dd>
-			<input type="checkbox" name="is_secret" value="Secret">Secret<br>
-			<dd><input type='submit' value='post'></dd>
+			<dd><textarea rows=5 cols=40 name='post-content' placeholder='write your comments.'></textarea></dd>
+			<dd><input type="checkbox" name="is-secret-post" value="Secret">Secret</dd>
+			<dd><input class='btn btn-default' type='submit' value='post to {{wall_owner.username}}'></dd>
 		</dl>
 	</form>
-</div>
+
 {% for post in posts %}
-<div>
-	{{ post.content }}<br>
-	{{ post.writer }}<br>
-	{{ post.time }}
-</div>
+	<div class='post-element'>
+		{{ post|safe }}
+	</div>
 {% endfor %}
 
 {% endblock %}

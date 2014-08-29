@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>welcome!</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
 	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 	{% block head %}{% endblock %}
@@ -13,8 +13,8 @@
 	{% for message in get_flashed_messages() %}
 	<div class='flash'>{{ message }}</div>
 	{% endfor %}
+	{% if not session.logged_in %}
 	<div>
-		{% if not session.logged_in %}
 		<ul class="nav nav-tabs" role="tablist">
 			<li type="button" class="navbar-form navbar-left"><a href="#">Home</a></li>
 			<li><a type="button" class="navbar-form navbar-left" href="{{ url_for('login') }}">log in</a></li>
@@ -23,8 +23,16 @@
 	</div>
 	{% else %}
 	<div>
-		Hello {{ session.username }}!
-		<a href="{{ url_for('logout') }}">logout</a>
+		<strong>
+			<div class='logo'>
+				<span id='logo-red'>HAT</span>Time
+			</div>
+		</strong>
+		<img id='logo-profile' src='{{ url_for("get_profile_image", filename = [user.profile_image,''][user.profile_image == None])}}' alt='profile_image' filename='{{user.profile_image}}'>
+		<ol class="breadcrumb">
+ 			<li class="active">Hello {{ session.username }}!</li>
+ 			<li><a href="{{ url_for('logout') }}">logout</a></li>
+		</ol>
 	</div>
 	{% endif %}
 </div>

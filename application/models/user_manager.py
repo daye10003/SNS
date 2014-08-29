@@ -2,6 +2,7 @@ import json, os
 from schema import User
 from application import db
 
+
 # LOGIN WITH EMAIL & PASSWORD
 def get_user_by_email(email) :
     '''
@@ -44,7 +45,7 @@ def add_user(data) :
     db.session.add(user)
     db.session.commit()
 
-def auth_check(email, password) :
+# def auth_check(email, password) :
     '''
     [INPUT]
     email <= request.form['email']
@@ -65,10 +66,13 @@ def auth_check(data) :
     '''
     password=db.func.md5(data['password'])
     email=data['email']
-    if User.query.filter(User.email==email, User.password==password).first()==None:
-        return False
-    else:
+    return User.query.filter(User.email==email, User.password==password).count() != 0
+
+def is_email_duplicated(email) :
+    if User.query.filter(User.email == email).count() > 0 :
         return True
+    else:
+        return False
 
 def update_profile_image(user_id, filename):
     user = get_user_by_id(user_id)

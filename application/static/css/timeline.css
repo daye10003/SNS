@@ -1,0 +1,39 @@
+.comment{
+	background-color: gray-lighter; 
+	padding: 5px; 
+	text-align: left;
+}
+
+
+/*
+
+
+.top{
+	position: absolute;
+	margin: auto;
+}
+.image-circle{
+	width: 500px;
+	height: 500px;
+}
+body{
+	
+}
+[class^="idea"]{
+
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.click_idea{
+	display: block;
+    margin-left: 49%;
+    margin-top: 7%;
+}
+.idea1{
+
+	margin-right: 47.5%;
+}
+.active{
+    opacity:0.7;
+}*/

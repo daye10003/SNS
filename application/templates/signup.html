@@ -9,12 +9,53 @@
 	<div>
 		<form action="/signup" method="post">
 		<dl>
-			<dt>Email</dt>
-			<dd><input class="form-control" id="InputEmail" placeholder="Enter email" type='email' name='email' required/></dd>
-			<dt>password</dt>
-			<dd><input class="form-control" id="InputPassword" placeholder="Password" type='password' name='password' required/></dd>
-			<dt>password check</dt>
-			<dd><input class='form-control' id='InputPasswordCheck' placeholder='Password check' type='password' name='password_check' required/></dd>
+			{% if form %}
+
+			{{ form.hidden_tag() }}
+
+			{% if form.errors %}
+				<div class='alert alert-danger fade-in'>
+					<a href='#' class='close' data-dismiss='alert'>&times;</a>
+					{% for field, errors in form.errors.items() %}
+						<ul>
+							{% for error in errors %}
+							<li>
+								{{ error }}
+							</li>
+							{% endfor %}
+						</ul>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			{% if signup_error %}
+				<div class='alert alert-danger fade-in'>
+					<a href='#' class='close' data-dismiss='alert'>&times;</a>
+					{{ signup_error }}
+				</div>
+			{% endif %}
+			
+			{% for field in form if field.widget.input_type != 'hidden' %}
+
+			<div class='form-group{% if field.errors %} has-error {% endif %}'>
+				<label for='{{ field.id }}'>{{ field.label }}</label>
+				{{ field(class='form-control', placeholder=field.description.placeholder) }}
+
+				{% if field.errors %}
+				<div class='help-block'>
+					<ul>
+						{% for error in field.errors %}
+						<li>
+							{{ error }}
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% endif %}
+			</div>
+			{% endfor %}
+
+		{% endif %}
 			<dt>username</dt>
 			<dd><input class='form-control' id='InputUsername' placeholder='Username' type='text' name='username' required/></dd>
 			<dt>mobile</dt>

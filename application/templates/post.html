@@ -1,0 +1,52 @@
+<div class='container' style='box-shadow: 1px 1px 1px 1px #888888; margin top : 5px;'>
+	<div style='border : 1 solid gray-lighter'>
+
+		<div class='row'>
+			<span style='float : left'>
+				profile img
+			</span>
+			<div class='col-md-11'>
+				<span style='float : left'>
+					{{ post.user.username if post.is_secret==0 or wall_owner.id == user_id }} posted on {{ wall_owner }}'s wall
+				<span>
+				<span style='float : right'>
+					edit/delete
+				</span>
+				<div class='col-md-10'></div>
+				<div class='col-md-2' style='text-align : left; border : 10px'>
+					{% if post.is_edited == 1 %}
+						edited {{ post.edited_time }}
+					{% else %}
+					{{ post.created_time if post.is_secret==0 or wall_owner.id == user_id }}
+					{% endif %}
+					{% if is_secret == 1 %}
+						비밀글입니다.
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class='row' id='contents'>
+			{{ post.content if post.is_secret == 0 or wall_owner.id == user_id }}  
+		</div>
+	</div>
+
+	<div class='row comment' id='comments'>
+		{% for comment in comments %}
+			{{ comment|safe }}
+		{% endfor%}
+	</div>
+	<div class='row comment'>
+		<div class='col-md-1'>
+			{{ session_username }}
+		</div>
+		<form>
+			<div class='col-md-10'>
+				<input hidden type='text' name='post-id' value=/>
+				<input type='textarea' name='body' rows='2' cols='20'/>
+			</div>
+			<div class='col-md-1'>
+				<input class="btn btn-default" type='submit' value='comment'>
+			</div>
+		</form>
+	</div>
+</div>

@@ -18,7 +18,7 @@ def upload_image():
 	user_manager.update_profile_image(session['user_id'], file_path.split('/')[-1])
 	return render_template('profile.html', user = user_manager.get_user_by_id(int(session['user_id'])))
 
-@app.route('/image/profile/<filename>')
+@app.route('/image/profile', methods=['POST'])
 def get_profile_image(filename) :
 	file_path = os.path.join('/gs/daye10003', 'profile', filename)
 	return file_manager.read_file(file_path)

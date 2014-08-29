@@ -29,3 +29,5 @@ class Comment(db.Model):
 	user 		= db.relationship('User')
 	post  		= db.relationship('Post', backref = db.backref('comments', cascade = 'all, delete-orphan', lazy = 'dynamic'))
 	created_time= db.Column(db.DateTime, default = db.func.now())
+	content		= db.Column(db.Text())
+	is_secret	= db.Column(db.Boolean, default = '0', onupdate = '1')

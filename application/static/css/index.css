@@ -1,0 +1,19 @@
+.logo{
+	background-color: black;
+	padding: 5px;
+	font-family: Agency FB;
+	color : white;
+	font-size: 20px;
+}
+#logo-red{
+	background-color: black;
+	padding: 5px;
+	font-family: Agency FB;
+	color : #990000;
+	font-size: 20px;
+}
+#logo-profile{
+	height: 20px;
+	width: auto;
+	text-align: right;
+}
